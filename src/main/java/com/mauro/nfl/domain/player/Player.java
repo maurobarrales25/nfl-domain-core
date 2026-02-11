@@ -1,5 +1,6 @@
 package com.mauro.nfl.domain.player;
 
+import com.mauro.nfl.domain.identity.Person;
 import com.mauro.nfl.domain.position.Position;
 import com.mauro.nfl.domain.position.PositionRoleRules;
 import com.mauro.nfl.domain.position.Role;
@@ -10,17 +11,13 @@ import java.util.Set;
 
 public class Player {
 
-    private final PlayerId playerId;
-    private final String name;
-    private final String lastName;
+    private final Person person;
     private final Position position;
     private Set<Role> roles;
     private PhysicalProfile physicalProfile;
 
-    public Player(PlayerId playerId, String name, String lastName, Position position, Set<Role> roles, PhysicalProfile physicalProfile) {
-        this.playerId = Objects.requireNonNull(playerId, "PlayerId cannot be null");
-        this.name = Objects.requireNonNull(name, "Name cannot be null");
-        this.lastName = Objects.requireNonNull(lastName, "LastName cannot be null");
+    public Player(Person person, Position position, Set<Role> roles, PhysicalProfile physicalProfile) {
+        this.person = Objects.requireNonNull(person, "PlayerId cannot be null");
         this.position = Objects.requireNonNull(position, "Position cannot be null");
         this.physicalProfile = Objects.requireNonNull(physicalProfile, "PhysicalProfile cannot be null");
 
@@ -35,17 +32,14 @@ public class Player {
         this.roles = new HashSet<>(roles);
     }
 
-    public PlayerId getPlayerId() {return playerId;}
-
-    public String getName() {return name;}
-
-    public String getLastName() {return lastName;}
+    public Person getPerson() {return person;}
 
     public Position getPosition() {return position;}
 
     public PhysicalProfile getPhysicalProfile() {return physicalProfile;}
 
     public Set<Role> getRoles() {return Set.copyOf(roles);}
+
 
     public void addRoles(Role... newRoles) {
         Objects.requireNonNull(newRoles, "New roles cannot be null");
@@ -61,11 +55,7 @@ public class Player {
     }
 
     public void setWeight(int weight) {
-        this.physicalProfile.setWeight(weight);
+        this.physicalProfile.updateWeight(weight);
     }
 
-    @Override
-    public String toString() {
-        return name + " " + lastName + " - " + position + " Roles: " + roles;
-    }
 }
