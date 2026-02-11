@@ -4,13 +4,13 @@ import com.mauro.nfl.domain.college.leagueLevel.LeagueLevel;
 
 import java.util.Objects;
 
-public record Conference(
+public record CollegeConference(
         String name,
         ConferenceTier tier,
         LeagueLevel leagueLevel
 ) {
 
-    public Conference {
+    public CollegeConference {
         Objects.requireNonNull(name, "Conference name cannot be null");
         Objects.requireNonNull(tier, "Conference tier cannot be null");
         Objects.requireNonNull(leagueLevel, "League level cannot be null");
