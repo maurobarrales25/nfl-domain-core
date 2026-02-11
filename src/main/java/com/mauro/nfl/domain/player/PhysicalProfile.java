@@ -17,7 +17,7 @@ public record PhysicalProfile(
         }
     }
 
-    public PhysicalProfile withWeight(int newWeight) {
+    public PhysicalProfile updateWeight(int newWeight) {
         return new PhysicalProfile(this.heightFeet, this.heightInches, newWeight);
     }
 
